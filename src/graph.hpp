@@ -18,7 +18,6 @@ void fill(int id, int count) {
   if(id==0) {
     using std::chrono::duration_cast;
     using std::chrono::nanoseconds;
-    queue.addRows(1);
     std::cout << "Filling single test queue\n"; 
     timestart = std::chrono::high_resolution_clock::now();
   }
@@ -67,6 +66,7 @@ void empty(int id) {
 void start(int numThreads, int count) {
   
   std::vector<std::thread*> threads;
+  queue.addRows(1);
   for(int i=0;i<numThreads;i++) {
     threads.push_back(new std::thread(&fill, i, count/numThreads));
   }
